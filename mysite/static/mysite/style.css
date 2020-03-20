@@ -1,0 +1,18 @@
+#radios{
+    text-align: center;
+    margin-top: 200px;
+}
+#outer
+{
+    width:100%;
+    text-align: center;
+    margin-top: 100px;
+}
+.inner
+{
+    display: inline-block;
+}
+#vertical_dropdown{
+    margin-left: 600px;
+    margin-top: 85px;
+}
