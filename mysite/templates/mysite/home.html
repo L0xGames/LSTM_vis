@@ -69,7 +69,7 @@
         </div>
     </div>
     <div class="row mt-5">
-        <div class="col-lg-3 mb-3">
+        <div class="col-lg-2 mb-3">
             <div id="radios_btn">
             <div class="btn-group-vertical btn-group-toggle" data-toggle="buttons">
                 <label class="btn btn-primary active">
@@ -85,6 +85,16 @@
             </div>
 
         </div>
+        <div class="col-lg-10">
+            <div id="graphs_div">
+    {% block content %}
+        {% load plotly_dash %}
+        <div class="{% plotly_class name='SimpleExample' %} card" style="height: 70%; width: 100%">
+            {% plotly_app_bootstrap name='SimpleExample' %}
+        </div>
+    {% endblock %}
+</div>
+        </div>
         <div class="col-lg-11 pl-5" >
             <div class="form-group" id="log_area" hidden>
     <label for="exampleFormControlTextarea1">Log</label>
@@ -95,14 +105,14 @@
 
 
 </div>
-<div id="graphs_div">
-    {% block content %}
-        {% load plotly_dash %}
-        <div class="{% plotly_class name='SimpleExample' %} card" style="height: 100%; width: 100%">
-            {% plotly_app name='SimpleExample' ratio=0.45 %}
-        </div>
-    {% endblock %}
-</div>
+{#<div id="graphs_div">#}
+{#    {% block content %}#}
+{#        {% load plotly_dash %}#}
+{#        <div class="{% plotly_class name='SimpleExample' %} card" style="height: 100%; width: 100%">#}
+{#            {% plotly_app_bootstrap name='SimpleExample' %}#}
+{#        </div>#}
+{#    {% endblock %}#}
+{#</div>#}
 
 
 <!--JavaScript -->
@@ -127,10 +137,9 @@
     retraining_button.addEventListener("click",function () {
         primary_forecast_button.innerHTML="Retrain";
         dropdown_btn.hidden=true;
-        log.hidden=false;
-        graphs.hidden=true;
-        upload_button.hidden=false;
-
+        log.hidden = false;
+        graphs.hidden = true;
+        upload_button.hidden = false;
 
 
     })

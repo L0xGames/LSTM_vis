@@ -6,7 +6,6 @@ import plotly.graph_objs as go
 from dash.exceptions import PreventUpdate
 from django_plotly_dash import DjangoDash
 import pandas as pd
-import dash_bootstrap_components as dbc
 
 df=pd.read_csv('/Users/kiandousti/Downloads/TSLA.csv')
 

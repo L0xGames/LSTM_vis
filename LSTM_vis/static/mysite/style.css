@@ -1,1 +1,4 @@
-.top-buffer { margin-top:20px; }
+#graphs_div{
+    padding-left: 20px;
+    padding-top: 10px;
+}
