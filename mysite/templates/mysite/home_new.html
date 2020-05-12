@@ -1,0 +1,165 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Bare - Start Bootstrap Template</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Start Bootstrap</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-lg-12 text-center">
+            <div id="radios_btn">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-primary active" id="btn_forecast">
+                        <input type="radio" name="options" id="option1" checked> Forecast
+                    </label>
+                    <label class="btn btn-primary" id="btn_retraining">
+                        <input type="radio" name="options" id="option2"> Retraining
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-3">
+            <button type="button" id="upload_btn" hidden="true" class="btn btn-secondary">Upload Dataset</button>
+            <div class="dropdown" id="category_btn">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                    Category: T-shirts
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-1">
+            <button type="button" id="forecast_btn" class="btn btn-primary">Forecast</button>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-lg-2 mb-3">
+            <div id="radios_btn">
+            <div class="btn-group-vertical btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-primary active">
+                        <input type="radio" name="options_vert" id="option1" checked> Demand forecasting
+                    </label>
+                 <label class="btn btn-primary" >
+                        <input type="radio" name="options_vert" id="option2" > Avg. Price forecasting
+                    </label>
+                 <label class="btn btn-primary">
+                        <input type="radio" name="options_vert" id="option3"> Stock Level forecasting
+                    </label>
+            </div>
+            </div>
+
+        </div>
+        <div class="col-lg-10">
+            <div id="graphs_div">
+    {% block content %}
+        {% load plotly_dash %}
+        <div class="{% plotly_class name='SimpleExample' %} card" style="height: 70%; width: 100%">
+            {% plotly_app_bootstrap name='SimpleExample' %}
+        </div>
+    {% endblock %}
+</div>
+        </div>
+        <div class="col-lg-11 pl-5" >
+            <div class="form-group" id="log_area" hidden>
+    <label for="exampleFormControlTextarea1">Log</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+        </div>
+    </div>
+
+
+</div>
+{#<div id="graphs_div">#}
+{#    {% block content %}#}
+{#        {% load plotly_dash %}#}
+{#        <div class="{% plotly_class name='SimpleExample' %} card" style="height: 100%; width: 100%">#}
+{#            {% plotly_app_bootstrap name='SimpleExample' %}#}
+{#        </div>#}
+{#    {% endblock %}#}
+{#</div>#}
+
+
+<!--JavaScript -->
+<script>
+    const dropdown_btn = document.getElementById("category_btn");
+    const forecasting_button=document.getElementById("btn_forecast");
+    const retraining_button=document.getElementById("btn_retraining");
+    const upload_button=document.getElementById("upload_btn");
+    const graphs=document.getElementById("graphs_div");
+    const log=document.getElementById("log_area");
+    const primary_forecast_button=document.getElementById("forecast_btn");
+
+
+    forecasting_button.addEventListener("click",function () {
+        primary_forecast_button.innerHTML="Forecast";
+        upload_button.hidden=true;
+        log.hidden=true;
+        graphs.hidden=false;
+        dropdown_btn.hidden=false;
+
+    })
+    retraining_button.addEventListener("click",function () {
+        primary_forecast_button.innerHTML="Retrain";
+        dropdown_btn.hidden=true;
+        log.hidden = false;
+        graphs.hidden = true;
+        upload_button.hidden = false;
+
+
+    })
+
+
+
+
+
+</script>
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

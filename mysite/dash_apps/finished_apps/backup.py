@@ -15,7 +15,7 @@ app = DjangoDash('SimpleExample', external_stylesheets=external_stylesheets)
 
 
 app.layout = html.Div([
-html.Button('Server', id='Server_Button', style = dict(display='none')),
+html.Button('Server', id='Server_Button'),
     html.Div([
         html.Div([
             html.H1('Square Root Slider Graph'),
@@ -84,4 +84,5 @@ def update_output(clicks):
     print("TEEEEEEEST")
     if clicks is None:
         raise PreventUpdate
+    print("clicked")
     return None
